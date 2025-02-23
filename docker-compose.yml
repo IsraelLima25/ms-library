@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  db-library:
+    image: postgres:14
+    container_name: postgres-db-library-service-container
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=library
+    ports:
+      - 5432:5432
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
