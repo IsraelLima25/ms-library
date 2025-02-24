@@ -1,18 +1,18 @@
 package controller;
 
+import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static io.restassured.RestAssured.given;
+
+@QuarkusTest
 class BookControllerTest {
 
-    /*
     @Test
-    void testHelloEndpoint() {
+    void shouldBookFindWhenReturnStatusOK() {
         given()
-                .when().get("/hello")
+                .when().get("/books/my-store")
                 .then()
-                .statusCode(200)
-                .body(is("Hello from Quarkus REST"));
+                .statusCode(200);
     }
-     */
 }
