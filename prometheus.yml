@@ -1,0 +1,7 @@
+scrape_configs:
+  - job_name: 'ms-library-job'
+    scrape_interval: 5s
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['ms-library:8080']
+#ip addr

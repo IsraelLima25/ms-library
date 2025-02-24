@@ -13,8 +13,44 @@ services:
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    depends_on:
+      - ms-library
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+
   ms-catalog:
     image: ilimafilho/ms-catalog:latest
     container_name: ms-catalog-service-container
     ports:
-      - "8181:8080"
+      - "8081:8081"
+
+  ms-library:
+    image: ilimafilho/ms-library:latest
+    container_name: ms-library-service-container
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db-library
+      - ms-catalog
+    environment:
+      - STORE_LOCATION=BA
+      - MOCK_ENABLED=FALSE
+      - QUARKUS_DATASOURCE_USERNAME=admin
+      - QUARKUS_DATASOURCE_PASSWORD=admin
+      - QUARKUS_DATASOURCE_HOST=db-library
+      - QUARKUS_DATASOURCE_PORT=5432
+      - QUARKUS_CLIENT_CATALOG_HTTP=ms-catalog
+      - QUARKUS_CLIENT_HTTP_PORT=8081

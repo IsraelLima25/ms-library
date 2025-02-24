@@ -8,6 +8,7 @@ import static io.restassured.RestAssured.given;
 @QuarkusTest
 class BookControllerTest {
 
+    // TODO: tests in quarkus
     @Test
     void shouldBookFindWhenReturnStatusOK() {
         given()
