@@ -9,6 +9,12 @@ services:
       - POSTGRES_PASSWORD=admin
       - POSTGRES_DB=library
     ports:
-      - 5432:5432
+      - "5432:5432"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  ms-catalog:
+    image: ilimafilho/ms-catalog:latest
+    container_name: ms-catalog-service-container
+    ports:
+      - "8181:8080"

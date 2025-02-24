@@ -1,4 +1,4 @@
-package domain;
+package br.com.ilima.library.domain;
 
 import jakarta.persistence.*;
 

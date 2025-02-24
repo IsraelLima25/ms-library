@@ -1,4 +1,4 @@
-package controller.input;
+package br.com.ilima.library.controller.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -14,9 +14,6 @@ public record BookRequest(
 
         @NotBlank
         String nameAuthor,
-
-        @NotBlank
-        String location,
 
         @NotNull
         @Positive
